@@ -1,0 +1,7 @@
+WITH cte AS(
+    SELECT STUDENT , ID % 2 AS is_odd , ROUND(ID / 2) AS group_num
+    FROM SEAT
+    )
+SELECT ROW_NUMBER() OVER() AS id, STUDENT
+FROM cte
+ORDER BY GROUP_NUM , IS_ODD 
