@@ -1,0 +1,13 @@
+WITH CTE AS(
+    SELECT 
+        D.NAME AS Department , 
+        E.NAME AS Employee , 
+        SALARY,
+        DENSE_RANK() OVER (PARTITION BY D.ID ORDER BY SALARY DESC) AS SALARY_RANK
+    FROM EMPLOYEE E 
+    LEFT JOIN DEPARTMENT D ON E.DEPARTMENTID = D.ID
+)
+
+SELECT  Department, Employee, Salary
+FROM  CTE
+WHERE SALARY_RANK <= 3
