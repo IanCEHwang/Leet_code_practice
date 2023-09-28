@@ -1,0 +1,6 @@
+SELECT
+    EVENT_DAY AS day,
+    EMP_ID AS emp_id,
+    SUM(OUT_TIME - IN_TIME) AS total_time
+FROM EMPLOYEES 
+GROUP BY EMP_ID , EVENT_DAY
